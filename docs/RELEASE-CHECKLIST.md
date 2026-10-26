@@ -47,8 +47,9 @@ publication does not mark unfinished validation or legal review as completed.
 - [x] Use publisher `shprekher` with GitHub's account-specific no-reply address,
       rather than the locally configured personal email. Preserve the destination's
       existing placeholder README/license commit.
-- [ ] Run the included CI on the future repository; local checks are not a claim
-      that GitHub Actions has already executed.
+- [x] GitHub Actions passed on both Ubuntu and macOS for source commit `602a601`:
+      <https://github.com/shprekher/Roon_UserReviews/actions/runs/40302151299>.
+      These jobs use synthetic contracts, not a live Core or proprietary inputs.
 - [x] Initial source checksum/tag are unsigned and labeled accordingly. SHA-256
       establishes integrity, not cryptographic publisher authentication.
 - [x] Explicit approval received for GitHub source publication and release;
