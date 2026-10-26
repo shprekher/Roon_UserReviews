@@ -42,6 +42,56 @@ Repository: [https://github.com/shprekher/Roon\_UserReviews](https://github.com/
 
 The only thing you manage is a plain text file in your album folder.
 
+## Architecture
+
+Roon File Reviews reuses **Roon's existing album review interface**. It does not create a second interface or run a separate service. Instead, a version-checked patch embeds a small review-handling component (`RuntimeBridge`) inside Roon Server's `Roon.Broker.Core.dll`.
+
+### How a review appears in Roon
+
+```mermaid
+flowchart TD
+    A["Roon client requests an album review"] --> B["Roon Server's existing review pipeline"]
+    B --> C["Patched method calls embedded RuntimeBridge"]
+    C --> D["Find the album's local track folders using Roon library data"]
+    D --> E["Read and validate user_review.txt candidates"]
+    E --> F{"One unambiguous candidate with valid text?"}
+    F -->|Yes| G["Wrap original callback and continue normal review request"]
+    F -->|No| H["Continue normal Roon pipeline or callback unchanged"]
+    G --> K{"Successful response with a container, or NotFound?"}
+    K -->|Yes| L["Merge local review; online first unless local explicitly selected"]
+    K -->|No| H
+    L --> I["Roon's existing album review interface"]
+    H --> I
+    S["Roon client requests available review sources"] --> J["Second patched getter advertises User review. as a source"]
+    J --> I
+```
+
+The bridge uses Roon's own album and track information to locate the right folder. When it finds a valid review, it adds the text to a successful normal review response, or shows it when Roon reports `NotFound`. Authentication errors, timeouts and other failures keep their original behavior. An online review remains the default unless you've selected your local review.
+
+If no suitable local file is found, or an ordinary helper error occurs, the bridge preserves normal review handling. Multiple candidate files are treated as ambiguous even if only one contains valid text. The bridge only injects local text into album review requests.
+
+Two existing methods in the broker assembly are modified: the method used during `GetLocalizedEntityText` requests and `get_SupportedMetadataContentSources`. The `RuntimeBridge` code is embedded into that assembly; no separately installed helper DLL or background service is needed at runtime.
+
+### How installation works (current source-based workflow)
+
+```mermaid
+flowchart TD
+    A["Stock Roon.Broker.Core.dll from supported build"] --> B["Verify exact original SHA-256"]
+    B --> C["Build patched candidate using Mono.Cecil"]
+    D["Locally built RuntimeBridge"] --> C
+    C --> E["Verify candidate and generate patch report"]
+    E --> F["Dry-run installation checks"]
+    F --> G["User explicitly opts in to apply"]
+    G --> H["Confirm local macOS target and Roon is stopped"]
+    H --> I["Back up and verify original DLL"]
+    I --> J["Atomically replace DLL with patched candidate"]
+    J --> K["User starts Roon normally"]
+```
+
+The patcher targets **one verified Roon build** and refuses an unknown or already-modified input DLL. The installation script also verifies the target and patch report, requires an explicit opt-in, and provides a restoration procedure using the saved original file. It operates locally on the Core Mac; **network discovery or remote installation is not part of this source-based workflow**.
+
+**Update compatibility:** the approach depends on private Roon methods, including compiler-generated implementation details. A small Roon update may change these even if album reviews look unchanged. Every new build requires separate inspection and testing; an old patched DLL must never be installed over a newer Roon version.
+
 ## Will it work on my setup?
 
 One Core build and one macOS install have actually been tested.
