@@ -1,77 +1,84 @@
 # Roon File Reviews
 
-**Your album-folder text, in Roon's native Review panel.**
+**Your own album notes, right where Roon shows its reviews.**
 
-Version **0.1.0** · Apache-2.0 · experimental, source-only · macOS Roon Server
+Drop a `user_review.txt` into an album's folder and Roon offers it as **User review.** When Roon has no online review for the album, your local review is shown instead. If an online review is available, it stays the default, and you can choose **User review.** under *Read more*.
 
-**Source release for advanced users:** compilation is currently required. No
-ready-to-run installer or patched Roon binaries are provided. A downloadable
-installer is planned as a separate follow-up, after packaging and live
-installation/rollback testing; no release date is promised.
+Edit the file, reopen the album, and the new text shows up.
 
-Repository: <https://github.com/shprekher/Roon_UserReviews>
+Version **0.1.0** · Apache-2.0 · macOS only · experimental
 
-Place your own `user_review.txt` beside an album's tracks. The patched server
-reads it on each review request and offers **User review.** under **Read more**.
-Online reviews remain the default; deliberate local-source selection is honored.
+Repository: [https://github.com/shprekher/Roon\_UserReviews](https://github.com/shprekher/Roon_UserReviews)
 
-> **Unofficial and unsupported.** This modifies a proprietary Roon assembly
-> using undocumented internals, not Roon's supported extension API. An incorrect
-> patch can prevent Roon from starting. Read [SECURITY.md](SECURITY.md) and
-> [the audit](docs/AUDIT.md), make an official Roon backup, and retain the original
-> DLL before proceeding. No association with or endorsement by Roon is claimed.
+> **Read this first.** This is an unofficial experiment. Roon Labs didn't make it. It works by editing one of Roon's own program files. Get it wrong and Roon may not start. It currently supports **one exact Roon build** (2.74, build 1712, on macOS), and a Roon update can break it without warning.
+
+> At the moment it's **source-only**: you compile it yourself, and there's no one-click installer. A packaged installer is planned but not built or tested yet. Take this on only if you're comfortable in a terminal, will make a backup first, and accept that it might not work on your machine. You can ask Codex, Claude Code or OpenCode to help follow these build instructions on a supported Mac.
+
+> The review reader runs inside your Core and makes no network requests of its own. See [SECURITY.md](SECURITY.md) for the trusted-library assumptions and storage limitations.
 
 ## What it does
 
-- Resolves album folders from Roon's own local track data, not guessed titles.
-- Reads the exact filename `user_review.txt`, including a common album parent
-  for multi-disc releases. Multiple candidate files are treated as ambiguous.
-- Preserves Unicode, paragraphs, whitespace, and line endings; accepts UTF-8
-  with an optional encoding BOM, up to **256 KiB**.
-- Leaves stock behavior unchanged when a file is absent, blank, invalid,
-  unreadable, or ambiguous. No stale database fallback is used.
-- Runs inside the Core: **no registration, registry, watcher, background helper,
-  per-album deployment, or development-Mac connection**.
-- Does not write album overlays, edit tags, modify FLAC/JPG files, or access
-  LevelDB. Roon itself continues its normal database activity.
+- Finds an album's folder from Roon's own track data, not by guessing from the title.
 
-## Compatibility
+- Reads the file named exactly `user_review.txt` in that folder, or in a shared parent folder for multi-disc albums.
 
-| Component | Verified / limitation |
-|---|---|
-| Roon Server | **2.74, build 1712**, exact original DLL hash below |
-| Core operating system | **macOS 26.5.2, build 25F84** |
-| Clients | Native protocol and existing iPad pilot display verified; latest label visual confirmation pending |
-| Windows client → Mac Core | Expected, not independently tested |
+- Passes your text to Roon's review panel without rewriting it: Unicode, paragraphs, spacing and line breaks are preserved. Roon controls how the text is displayed. It accepts UTF-8 (with or without a BOM), up to **256 KiB**.
+
+- Keeps online reviews first and adds yours as a separate, selectable source. If you deliberately pick your local review, that choice is respected.
+
+- Leaves Roon behaving exactly as normal when the file is missing, blank, invalid, unreadable, or ambiguous (more than one candidate). It never falls back to some stale saved copy.
+
+- Runs inside the Core, so there's no helper app, no watcher, no per-album setup, and no need to stay connected to another computer.
+
+## What it leaves alone
+
+- It does not write to Roon's database.
+
+- It does not touch your music files, tags, or cover art.
+
+- It does not create album overlays or open LevelDB.
+
+- Roon keeps doing its normal database work in the background; this simply adds nothing to it.
+
+The only thing you manage is a plain text file in your album folder.
+
+## Will it work on my setup?
+
+One Core build and one macOS install have actually been tested.
+
+| Component | Status |
+| --- | --- |
+| Roon Server | **2.74, build 1712** only (exact file hash below) |
+| Core operating system | **macOS 26.5.2, build 25F84** (the one install tested) |
+| Clients | Native protocol checks passed; iPad and Android phone tested |
+| Windows client → Mac Core | Expected to work, not tested |
 | Windows / Linux Core, Roon OS / ROCK / Nucleus | **Not supported** |
-| Development | .NET SDK **10.0.402**; Python **3.9+** standard library |
+| Build tools | .NET SDK **10.0.402**; Python **3.9+** (standard library only) |
 
-Only one Core build and operating-system installation have been live-tested.
-Synthetic CI tests are not evidence of compatibility with another Roon release.
-The patcher refuses any original `Roon.Broker.Core.dll` whose SHA-256 is not:
 
-```text
+The patcher refuses to touch any `Roon.Broker.Core.dll` whose SHA-256 isn't exactly:
+
+```
 a61a72bc683db159a13fd08a14921f781cf7c2685a7c9ec193bcae075db2612d
 ```
 
-## Installation (advanced users)
+If your Roon is a different build, the patcher refuses to touch it. That refusal is deliberate as other builds are not tested.
 
-Run locally on the **Core Mac**, not against SMB-mounted application files.
-No Roon DLL, patched DLL, database, music, or review content is distributed here.
-Supply assemblies from your own lawfully installed, matching Roon installation.
+## Installation (advanced)
 
-1. Review Roon's current terms and the audit's manual-review items. Install the
-   .NET 10.0.402 SDK and Python 3.9+ from their official distributors. Verify their
-   downloads according to those distributors' instructions.
-2. Make an official Roon database backup. Fully **quit Roon and its server**;
-   leave it stopped throughout copying, building, and installation. Record the
-   installed Roon version and keep a separate copy of the original application.
-3. Locate the server's `MonoBundle` directory. For a combined Roon application,
-   it is commonly `/Applications/Roon.app/Contents/RoonServer.app/Contents/MonoBundle`.
-   Standalone server layouts can differ; verify your installation, do not guess.
-4. Copy the matching `MonoBundle` DLLs to the ignored `private/assemblies/`
-   directory. Keep these inputs private and never attach them to an issue.
-5. From this repository, build and test **offline candidates**:
+This part is for people who are happy building from source on the machine that runs their Core. Nothing here ships a Roon file, a patched file, a database, music, or review text. You supply the Roon assemblies from your own lawfully installed copy.
+
+Work directly on the **Core Mac**, on local storage. Don't patch an app sitting on a network (SMB) share.
+
+1. Install the .NET 10.0.402 SDK and Python 3.9+.
+
+2. Make an official Roon database backup, and keep a separate copy of the whole Roon application. **Quit Roon and its server completely**, and leave them stopped through the copy, build, and install steps. Note your Roon version.
+
+3. Find the server's `MonoBundle` folder. In a combined Roon app it's usually `/Applications/Roon.app/Contents/RoonServer.app/Contents/MonoBundle`. A standalone server may lay things out differently, so check yours rather than guessing.
+
+4. Copy the matching `MonoBundle` DLLs into the ignored `private/assemblies/` folder. Keep those private; never attach them to a bug report.
+
+5. From this repository, build and test a local patch candidate. Dependency restoration needs internet access:
 
    ```sh
    dotnet restore bridge/Patcher/Patcher.csproj --locked-mode
@@ -85,10 +92,9 @@ Supply assemblies from your own lawfully installed, matching Roon installation.
      artifacts/Roon.Broker.Core.patched.dll private/assemblies
    ```
 
-   Existing outputs are never overwritten. The report next to the candidate
-   records its hash and verifies unrelated method bodies are unchanged. Keep
-   both files private: the candidate contains proprietary Roon code.
-6. Set `TARGET` to the exact installed broker DLL you located. First dry-run:
+   It never overwrites an existing output. The report written next to the candidate records its hash and verifies that unrelated method bodies were left unchanged. Keep both files private. The candidate contains Roon's proprietary code.
+
+6. Point `TARGET` at the exact installed broker DLL you found, and do a dry run first:
 
    ```sh
    TARGET='/Applications/Roon.app/Contents/RoonServer.app/Contents/MonoBundle/Roon.Broker.Core.dll'
@@ -98,20 +104,13 @@ Supply assemblies from your own lawfully installed, matching Roon installation.
      --backup backups/first-install
    ```
 
-   After reviewing the result, repeat with `--apply --acknowledge-unsupported`.
-   The tool checks local macOS execution, stopped processes, the stock hash,
-   a verified original-DLL backup, and candidate integrity before an atomic swap.
-   It never stops/restarts Roon or edits its database. **The public local installer
-   has synthetic tests but has not been exercised against a live Roon app.**
-   Permission/signing failures require investigation; do not disable Gatekeeper,
-   remove quarantine, force-sign the application, or bypass macOS protections.
-7. Start Roon normally. Open a test album and check the default online source,
-   the **User review.** entry, and explicit local selection. If startup or
-   playback fails, stop Roon and follow [rollback](docs/INSTALLATION.md).
+   Look at the result, then repeat with `--apply --acknowledge-unsupported`. Before applying the patch, the tool checks that you're on local macOS, that Roon is stopped, that the file is the exact stock build, and that the backup and candidate are intact. It never starts or stops Roon itself and never edits the database. **This installer has passed synthetic tests, but it has not yet been run against a real Roon install.** If macOS blocks it on permissions or signing, stop and investigate. Don't disable Gatekeeper, strip quarantine, force-sign the app, or route around any protection.
+
+7. Start Roon normally. Open a test album and check that the online review is still the default, that **User review.** appears as an option, and that picking it shows your text. If Roon won't start or playback breaks, quit it and follow the [rollback steps](docs/INSTALLATION.md).
 
 ## Everyday use
 
-```text
+```
 Music/
 └── Example Artist — Example Album/
     ├── 01 - Example Track.flac
@@ -119,53 +118,18 @@ Music/
     └── user_review.txt       ← your own UTF-8 review
 ```
 
-For multi-disc albums, use one file in the common album directory, **not** one
-in every disc folder. Reopen the album/review screen after editing. New albums
-work once Roon has imported their tracks. No command, scan, approval, restart,
-or database write by this project is needed for routine file changes.
+For a multi-disc album, put **one** file in the shared album folder, not one in each disc folder. After editing, reopen the album or review screen. A new album works as soon as Roon has imported its tracks, with no command, scan, approval, restart, or database write needed.
 
-Write or supply text you have permission to use. This repository deliberately
-contains no album reviews, artwork, screenshots, or music-library exports.
+Only use text you have the right to use. On purpose, this repository contains no album reviews, artwork, screenshots, or library exports.
 
-## Limitations and security
+## Good to know
 
-- Use a **trusted local music library**. Ordinary review files work as intended;
-  the reader also follows symlinks by default, although the project neither
-  creates nor requires them. This is a low-priority risk in a trusted private
-  library, not a standalone remote-entry vulnerability. Link rejection is optional
-  future hardening, not a publication prerequisite for this trust model. See
-  [SECURITY.md](SECURITY.md) for shared/untrusted-library implications.
-- Separately, network filesystem stalls and special files can block Roon's library
-  thread. Size limits do not impose an I/O timeout; the symlink decision does not
-  change this storage-availability limitation.
-- The local review is visible to clients that can access the Core. Do not put
-  secrets or private notes in review files. Treat clients/library writers as trusted.
-- Local tracks are required; streaming-only albums and mixed/ambiguous layouts
-  can retain stock behavior. Only the exact lowercase filename is recognized.
-- Automatic Roon updates may remove the patch or make it incompatible. Never
-  put an old patched DLL over a newer build. Stop and wait for a verified adapter.
-- No public end-to-end CI runs proprietary Roon. UI caching may require reopening
-  the album or reconnecting a client; the project does not control client caches.
-- This is not a sandbox, a supported plug-in, or a guarantee against data loss.
+- **It needs local tracks.** Streaming-only albums and mixed or ambiguous layouts may just keep Roon's normal behavior. Only the exact lowercase filename `user_review.txt` is recognized.
 
-## Development and release
+- **Roon updates can remove or break the patch.** Never put an old patched file over a newer Roon build. Stop and wait for a version that's been checked against it.
 
-```sh
-dotnet run --project bridge/Tests/Tests.csproj
-dotnet restore bridge/Patcher/Patcher.csproj --locked-mode
-dotnet build --no-restore bridge/Patcher/Patcher.csproj
-python3 -m unittest discover -s tests -v
-python3 scripts/release_check.py
-python3 scripts/package_release.py --output dist/roon-file-reviews-0.1.0-source.tar.gz
-```
+- This isn't a sandbox, a supported plug-in, or a promise against data loss.
 
-The runtime source matches the privately deployed v5.2 implementation. The public
-test doubles contain no Roon implementation; integration tests need local private
-assemblies. See [architecture](docs/ARCHITECTURE.md), [contributing](CONTRIBUTING.md),
-[dependencies](THIRD_PARTY_NOTICES.md), and [release checklist](docs/RELEASE-CHECKLIST.md).
+## Credits and license
 
-## License
-
-Original project source is offered under [Apache License 2.0](LICENSE).
-Mono.Cecil remains MIT-licensed. Apache-2.0 grants **no rights to Roon's software,
-trademarks, third-party reviews, or music**. See [NOTICE](NOTICE).
+The original source is offered under the [Apache License 2.0](LICENSE). The IL patcher builds on [Mono.Cecil](https://github.com/jbevain/cecil) by Jb Evain, which stays MIT-licensed.
