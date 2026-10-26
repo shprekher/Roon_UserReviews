@@ -132,4 +132,8 @@ Only use text you have the right to use. On purpose, this repository contains no
 
 ## Credits and license
 
+Original author and maintainer: Alexander Shprekher ([@shprekher](https://github.com/shprekher)).
+
+Copyright 2026 Alexander Shprekher and Roon File Reviews contributors.
+
 The original source is offered under the [Apache License 2.0](LICENSE). The IL patcher builds on [Mono.Cecil](https://github.com/jbevain/cecil) by Jb Evain, which stays MIT-licensed.

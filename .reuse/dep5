@@ -3,7 +3,8 @@ Upstream-Name: Roon File Reviews
 Source: https://github.com/shprekher/Roon_UserReviews
 
 Files: *
-Copyright: 2026 Roon File Reviews contributors
+Copyright: 2026 Alexander Shprekher
+           2026 Roon File Reviews contributors
 License: Apache-2.0
 
 Files: LICENSES/Mono.Cecil-MIT.txt
