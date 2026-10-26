@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Roon File Reviews
+Source: https://github.com/shprekher/Roon_UserReviews
+
+Files: *
+Copyright: 2026 Roon File Reviews contributors
+License: Apache-2.0
+
+Files: LICENSES/Mono.Cecil-MIT.txt
+Copyright: 2008-2015 Jb Evain
+           2008-2011 Novell, Inc.
+License: MIT

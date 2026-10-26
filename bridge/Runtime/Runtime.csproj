@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>RoonReviews.Runtime</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RoonAssemblies Condition="'$(RoonAssemblies)' == ''">$(MSBuildThisFileDirectory)../../private/assemblies</RoonAssemblies>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Roon.Broker.Api"><HintPath>$(RoonAssemblies)/Roon.Broker.Api.dll</HintPath></Reference>
+    <Reference Include="Roon.Primitives"><HintPath>$(RoonAssemblies)/Roon.Primitives.dll</HintPath></Reference>
+    <Reference Include="Base"><HintPath>$(RoonAssemblies)/Base.dll</HintPath></Reference>
+    <Reference Include="Roon.HttpClient"><HintPath>$(RoonAssemblies)/Roon.HttpClient.dll</HintPath></Reference>
+  </ItemGroup>
+  <Target Name="RequirePrivateInputs" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(RoonAssemblies)/Roon.Broker.Api.dll')" Text="Supply your own supported Roon installation assemblies locally. See README; never upload these files." />
+  </Target>
+</Project>

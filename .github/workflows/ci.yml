@@ -1,0 +1,32 @@
+name: Source safety and synthetic tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.402'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - run: dotnet restore bridge/Tests/Tests.csproj --locked-mode
+      - run: dotnet run --no-restore --project bridge/Tests/Tests.csproj
+      - run: dotnet restore bridge/Patcher/Patcher.csproj --locked-mode
+      - run: dotnet build --no-restore bridge/Patcher/Patcher.csproj
+      - run: python3 -m unittest discover -s tests -v
+      - run: python3 scripts/release_check.py
+      - run: python3 scripts/package_release.py --output dist/roon-file-reviews-0.1.0-source.tar.gz
+      - run: python3 scripts/release_check.py --archive dist/roon-file-reviews-0.1.0-source.tar.gz
+      # No proprietary inputs, live Core, binary uploads, publish job, or secrets.

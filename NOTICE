@@ -1,0 +1,15 @@
+Roon File Reviews
+Copyright 2026 Roon File Reviews contributors
+
+This distribution contains original project source offered under the Apache
+License, Version 2.0. The release owner must confirm contributor rights before
+publication; this notice does not assign rights to third-party material.
+
+This project is independent of and not endorsed by Roon or its owners. Roon
+names are used only to identify the third-party software with which it interacts.
+No rights to proprietary Roon software or trademarks are granted here.
+
+Mono.Cecil is a build-time dependency under the MIT license. Its attribution and
+license are retained in THIRD_PARTY_NOTICES.md and LICENSES/Mono.Cecil-MIT.txt.
+No Roon assemblies, patched Roon assemblies, album reviews, or library data are
+part of this source distribution.

@@ -1,0 +1,19 @@
+name: Bug report
+description: Report an issue using synthetic, non-private details only.
+body:
+  - type: markdown
+    attributes:
+      value: "For security issues use private reporting, once configured. Do not attach Roon binaries, logs with personal data, library exports, reviews, or database files."
+  - type: input
+    id: versions
+    attributes:
+      label: Project version, Roon build, macOS version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal steps and expected versus actual behavior
+      description: Use fictional folder names and original synthetic text only.
+    validations:
+      required: true

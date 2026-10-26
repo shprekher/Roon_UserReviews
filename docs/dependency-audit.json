@@ -1,0 +1,475 @@
+{
+  "audit_date": "2026-10-25",
+  "public_nuget": {
+    "dependency": "Mono.Cecil",
+    "version": "0.11.6",
+    "transitive_dependencies": [],
+    "license": "MIT",
+    "known_advisories_reported": 0,
+    "source": "NuGet vulnerability listing"
+  },
+  "excluded_private_node": {
+    "shipped": false,
+    "required_by_runtime": false,
+    "package_names": 357,
+    "advisory_version_matches": 50,
+    "method": "npm HTTPS bulk advisory API; exact lock versions matched with semver",
+    "findings": [
+      {
+        "package": "@babel/core",
+        "versions": [
+          "7.29.0"
+        ],
+        "severity": "low",
+        "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
+        "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-f886-m6hf-6m8v",
+        "title": "brace-expansion: Zero-step sequence causes process hang and memory exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-f886-m6hf-6m8v",
+        "title": "brace-expansion: Zero-step sequence causes process hang and memory exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+        "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+        "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+        "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+        "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "1.1.12"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "versions": [
+          "2.0.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "3.1.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
+        "title": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "9.0.3"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
+        "title": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "3.1.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
+        "title": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "9.0.3"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
+        "title": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "3.1.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
+        "title": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions"
+      },
+      {
+        "package": "minimatch",
+        "versions": [
+          "9.0.3"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
+        "title": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "3.14.2"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+        "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "4.1.1"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+        "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "4.1.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+        "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "3.14.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+        "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "3.14.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "4.1.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "3.14.2"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+        "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources"
+      },
+      {
+        "package": "js-yaml",
+        "versions": [
+          "4.1.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+        "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources"
+      },
+      {
+        "package": "ajv",
+        "versions": [
+          "6.12.6"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
+        "title": "ajv has ReDoS when using `$data` option"
+      },
+      {
+        "package": "baseline-browser-mapping",
+        "versions": [
+          "2.9.19"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
+        "title": "baseline-browser-mapping process termination on invalid input causes denial of service"
+      },
+      {
+        "package": "browserslist",
+        "versions": [
+          "4.28.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+        "title": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM"
+      },
+      {
+        "package": "browserslist",
+        "versions": [
+          "4.28.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
+        "title": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)"
+      },
+      {
+        "package": "flatted",
+        "versions": [
+          "3.3.3"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-25h7-pfq9-p65f",
+        "title": "flatted vulnerable to unbounded recursion DoS in parse() revive phase"
+      },
+      {
+        "package": "flatted",
+        "versions": [
+          "3.3.3"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-rf6f-7fwh-wjgh",
+        "title": "Prototype Pollution via parse() in NodeJS flatted"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-3mfm-83xf-c92r",
+        "title": "Handlebars.js has JavaScript Injection via AST Type Confusion by tampering @partial-block"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "critical",
+        "url": "https://github.com/advisories/GHSA-2w6w-674q-4c4q",
+        "title": "Handlebars.js has JavaScript Injection via AST Type Confusion"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-2qvq-rjwj-gvw9",
+        "title": "Handlebars.js has Prototype Pollution Leading to XSS through Partial Template Injection"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-7rx3-28cr-v5wh",
+        "title": "Handlebars.js has a Prototype Method Access Control Gap via Missing __lookupSetter__ Blocklist Entry"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "low",
+        "url": "https://github.com/advisories/GHSA-442j-39wm-28r2",
+        "title": "Handlebars.js has a Property Access Validation Bypass in container.lookup"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-xhpv-hc6g-r9c6",
+        "title": "Handlebars.js has JavaScript Injection via AST Type Confusion when passing an object as dynamic partial"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-9cx6-37pm-9jff",
+        "title": "Handlebars.js has Denial of Service via Malformed Decorator Syntax in Template Compilation"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-xjpj-3mr7-gcpf",
+        "title": "Handlebars.js has JavaScript Injection in CLI Precompiler via Unescaped Names and Options"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "critical",
+        "url": "https://github.com/advisories/GHSA-p8wg-vrv2-v86f",
+        "title": "Handlebars: JavaScript Injection via Own Property Check Bypass"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-xw65-4hp5-5hc7",
+        "title": "Handlebars: JavaScript Injection via Unsafe Inline Embedding of Precompiled Templates"
+      },
+      {
+        "package": "handlebars",
+        "versions": [
+          "4.7.8"
+        ],
+        "severity": "critical",
+        "url": "https://github.com/advisories/GHSA-8r5x-fm3f-whwj",
+        "title": "Handlebars: JavaScript Injection via AST Type Confusion in compile (bypass of CVE-2026-33937)"
+      },
+      {
+        "package": "picomatch",
+        "versions": [
+          "2.3.1"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-3v7f-55p6-f55p",
+        "title": "Picomatch: Method Injection in POSIX Character Classes causes incorrect Glob Matching"
+      },
+      {
+        "package": "picomatch",
+        "versions": [
+          "2.3.1"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-c2c7-rcm5-vvqj",
+        "title": "Picomatch has a ReDoS vulnerability via extglob quantifiers"
+      },
+      {
+        "package": "ws",
+        "versions": [
+          "8.19.0"
+        ],
+        "severity": "moderate",
+        "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
+        "title": "ws: Uninitialized memory disclosure"
+      },
+      {
+        "package": "ws",
+        "versions": [
+          "8.19.0"
+        ],
+        "severity": "high",
+        "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+        "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks"
+      }
+    ]
+  },
+  "limitations": [
+    "Snapshot advisory data, not proof of security",
+    "No private Node dependencies are shipped",
+    "Rerun scans before publication"
+  ]
+}

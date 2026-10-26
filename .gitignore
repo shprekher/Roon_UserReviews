@@ -1,0 +1,27 @@
+# Local proprietary inputs, generated patched assemblies, and private backups
+/private/
+/artifacts/
+/backups/
+/data/
+/tools/
+/vendor/
+/dist/
+**/bin/
+**/obj/
+**/__pycache__/
+**/node_modules/
+*.dll
+*.exe
+*.pdb
+*.bin
+*.ldb
+*.sqlite*
+*.log
+*.jsonl
+*.plist
+*.pem
+*.key
+.env*
+config.local.*
+user_review.txt
+.DS_Store
