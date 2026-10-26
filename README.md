@@ -10,7 +10,7 @@ Version **0.1.0** · Apache-2.0 · macOS only · experimental
 
 Repository: [https://github.com/shprekher/Roon\_UserReviews](https://github.com/shprekher/Roon_UserReviews)
 
-> **Read this first.** This is an unofficial experiment. Roon Labs didn't make it. It works by editing one of Roon's own program files. Get it wrong and Roon may not start. It currently supports **one exact Roon build** (2.74, build 1712, on macOS), and a Roon update can break it without warning.
+> **Read this first.** This is an unofficial experiment. Roon Labs didn't make it. It works by editing one of Roon's own program files. It currently supports **one exact Roon build** (2.74, build 1712, on macOS), and a Roon update can break it without warning.
 
 > At the moment it's **source-only**: you compile it yourself, and there's no one-click installer. A packaged installer is planned but not built or tested yet. Take this on only if you're comfortable in a terminal, will make a backup first, and accept that it might not work on your machine. You can ask Codex, Claude Code or OpenCode to help follow these build instructions on a supported Mac.
 
